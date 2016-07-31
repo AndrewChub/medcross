@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>canvasExample</title>
+    <meta charset='utf-8' />
+  </head>
+  <body>
+    <!--<p>
+      Speed: <input type="text" id="speed" value="200" size="6" maxlength="6"> ms
+    </p>-->
+    <canvas height='800' width='1200' id='example'>Обновите браузер</canvas>
+    <script>
+
+function drawCross(offset) {
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, 800, 600);
+
+
+  ctx.fillStyle = "green";
+
+  for (var x = 300; x < 500; x+=10) {
+    for (var y = 100; y < 600; y+=10) {
+      ctx.fillRect(x, y, 5, 5);
+    }
+  }
+
+  for (var x = 100 + offset; x < 700 - offset; x+=10) {
+    for (var y = 230; y < 430; y+=10) {
+      ctx.fillRect(x, y, 5, 5);
+    }
+  } 
+}
+
+var example = document.getElementById("example");
+var ctx = example.getContext('2d');
+
+var globalOffset = 0;
+var sign = true;
+
+setInterval(
+  function () {
+    if (globalOffset > 200) {
+      sign = false;
+    }
+
+    if (globalOffset <= 0) {
+      sign = true;
+    }
+
+
+    if (sign == true) {
+      globalOffset += 10;
+    } else {
+      globalOffset -= 10;
+    }
+    drawCross(globalOffset);
+  }, 
+  200
+);
+
+    </script>
+  </body>
+</html>
